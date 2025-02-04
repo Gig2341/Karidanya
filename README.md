@@ -1,2 +1,2 @@
-# Kairdanya
+# Karidanya
 E-commerce Website
