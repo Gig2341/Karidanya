@@ -1,5 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const connectDB = require('./config/db');
 require('dotenv').config();
 
@@ -9,10 +10,18 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+    cookie: { maxAge: 1800000 } // 30 minutes
+}));
 
 // Routes
-app.use('/api/products', require('./routes/productRoutes'));
+app.use('/products', require('./routes/productRoutes'));
+app.use('/auth', require('./routes/authRoutes'));
 
 // Start the server
 const PORT = process.env.PORT || 5000;
