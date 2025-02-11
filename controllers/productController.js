@@ -8,6 +8,8 @@ exports.getProducts = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
+
+console.log("all products")
 };
 
 // Get a product by ID
@@ -19,6 +21,7 @@ exports.getProductById = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
+    console.log("product by id")
 };
 
 // Create a new product
@@ -38,6 +41,7 @@ exports.createProduct = async (req, res) => {
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
+    console.log("product created")
 };
 
 // Update a product
@@ -52,6 +56,7 @@ exports.updateProduct = async (req, res) => {
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
+    console.log("product updated")
 };
 
 // Delete a product
@@ -65,4 +70,5 @@ exports.deleteProduct = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
+    console.log("product deleted")
 };
