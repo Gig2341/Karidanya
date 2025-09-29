@@ -8,8 +8,7 @@ exports.getProducts = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
-
-console.log("all products")
+    console.log("all products")
 };
 
 // Get a product by ID
@@ -65,7 +64,7 @@ exports.deleteProduct = async (req, res) => {
         const product = await Product.findById(req.params.id);
         if (!product) return res.status(404).json({ message: 'Product not found' });
 
-        await product.remove();
+        await product.deleteOne();
         res.json({ message: 'Product removed' });
     } catch (err) {
         res.status(500).json({ message: err.message });
